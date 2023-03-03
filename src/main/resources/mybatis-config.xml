@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 将数据库列名中的下划线转换为Java对象的驼峰命名 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <typeAliases>
+        <!-- 扫描指定包下的所有Java类，并注册为别名 -->
+        <package name="com.e2mtool.*.entity"/>
+    </typeAliases>
+    <mappers>
+        <!-- 扫描指定包下的所有Mapper XML文件，并注册为Mapper -->
+        <mapper resource="/mybatis/mapper/*.xml"/>
+    </mappers>
+</configuration>
