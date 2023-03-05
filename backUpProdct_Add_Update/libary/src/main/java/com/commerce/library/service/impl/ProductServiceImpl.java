@@ -1,6 +1,7 @@
 package com.commerce.library.service.impl;
 
 import com.commerce.library.dao.ProductDao;
+import com.commerce.library.model.Category;
 import com.commerce.library.model.Product;
 import com.commerce.library.repository.ProductRepository;
 import com.commerce.library.service.ProductService;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -19,6 +21,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     @Autowired
     private ImageUpload imageUpload;
+
     @Override
     public List<ProductDao> findAll() {
         List<ProductDao> productDaoList = new ArrayList<>();
@@ -68,8 +71,39 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+
+
     @Override
-    public Product update(ProductDao productDao) {
+    public Product update(MultipartFile imageProduct,ProductDao productDao) {
+        Optional<Product> optionalProduct = productRepository.findById(productDao.getId());
+        if (optionalProduct.isPresent()){
+            try{
+                Product product = optionalProduct.get();
+            if(imageProduct == null){
+                product.setImage(product.getImage());
+            }else {
+                if (imageUpload.checkExisted(imageProduct) == false){
+
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!update");
+
+                    imageUpload.uploadImage(imageProduct);
+                }
+
+                System.out.println("have a img!!!!!!!!!!!!!!");
+                product.setImage(imageProduct.getOriginalFilename());
+            }
+            product.setName(productDao.getName());
+            product.setDescription(productDao.getDescription());
+            product.setSalePrice(productDao.getSalePrice());;
+            product.setCostPrice(productDao.getCostPrice());
+            product.setCurrentQuantity(productDao.getCurrentQuantity());
+            product.setCategory(productDao.getCategory());
+            return productRepository.save(product);
+        }catch (Exception e){
+                e.printStackTrace();
+                return null;
+            }
+    }
         return null;
     }
 
@@ -81,5 +115,34 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void enableById(Long id) {
 
+    }
+
+    //    exp for findById replace getById
+//public void deleteById(Long id) {
+//    Optional<Category> optionalCategory = repo.findById(id);
+//    if (optionalCategory.isPresent()) {
+//        Category category = optionalCategory.get();
+//        category.set_deleted(true);
+//        category.set_activated(false);
+//        repo.save(category);
+//    }
+//}
+    @Override
+    public ProductDao getByID(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+
+        ProductDao productDao = new ProductDao();
+        productDao.setId(product.get().getId());
+        productDao.setName(product.get().getName());
+        productDao.setDescription(product.get().getDescription());
+        productDao.setCurrentQuantity(product.get().getCurrentQuantity());
+        productDao.setCategory(product.get().getCategory());
+        productDao.setSalePrice(product.get().getCostPrice());
+        productDao.setCostPrice(product.get().getCostPrice());
+        productDao.setImage(product.get().getImage());
+        productDao.setDeleted(product.get().is_deleted());
+        productDao.setActivated(product.get().is_activated());
+
+        return productDao;
     }
 }

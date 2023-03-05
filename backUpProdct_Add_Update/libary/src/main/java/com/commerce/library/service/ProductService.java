@@ -10,7 +10,9 @@ public interface ProductService {
 
     List<ProductDao> findAll();
     Product save(MultipartFile multipartFile, ProductDao productDao);
-    Product update(ProductDao productDao);
+    Product update(MultipartFile multipartFile, ProductDao productDao);
     void deleteById(Long id);
     void enableById(Long id);
+
+    ProductDao getByID(Long id);
 }

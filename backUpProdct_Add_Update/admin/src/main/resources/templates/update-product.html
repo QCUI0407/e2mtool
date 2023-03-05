@@ -230,41 +230,94 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!--page heading-->
-                <div th:if = "${size == 0}">
-                    <p>NO PRODUCTS</p>
-                </div>
-                <div th:if = "${success}">
-                    <p th:text="${success}"></p>
-                </div>
-                <div th:if="${error}">
-                    <p th:text="${error}"></p>
-                </div>
-                <a class="btn btn-primary" th:href="@{add-product}">Add new product
-                </a>
-                <table class="table table-hover" th:if = "${size > 0}">
-                    <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Update</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="product : ${products}">
-                        <th scope="row" th:text="${product.name}"></th>
-                        <td th:text="${product.category.name}"></td>
-                        <td th:text="${product.costPrice}"></td>
-                        <td th:text="${product.currentQuantity}"></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                <form class="form-horizontal" th:action="@{/update-product/{id}(id=${productDao.id})}" method="post" th:object="${productDao}" enctype="multipart/form-data" >
 
-                    </tbody>
-                </table>
+<!--                    enctype="multipart/form-data"    -->
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>ADD PRODUCTS</legend>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>
+                            <div class="col-md-4">
+                                <input id="product_name" th:field="*{name}" name="product_name" class="form-control input-md" required="" type="text">
+                            </div>
+                        </div>
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="categories">PRODUCT CATEGORY</label>
+                            <div class="col-md-4">
+                                <select id="categories" th:field="*{category}" name="categories" class="form-control">
+                                    <option th:value="null">SELECT</option>
+                                    <option th:each="category:${categories}"
+                                            th:value="${category.id}"
+                                            th:text="${category.name}">
+
+                                    </option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="description">PRODUCT DESCRIPTION </label>
+                            <div class="col-md-4">
+                                <input id="description" th:field="*{description}" name="description" class="form-control input-md" required="" type="text">
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="available_quantity">AVAILABLE QUANTITY</label>
+                            <div class="col-md-4">
+                                <input id="available_quantity" th:field="*{currentQuantity}" name="available_quantity"  class="form-control input-md" required="" type="text">
+
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="price">PRICE</label>
+                            <div class="col-md-4">
+                                <input id="price" name="price" th:field="*{costPrice}" class="form-control input-md" required="" type="text">
+
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="sale">Sale Price</label>
+                            <div class="col-md-4">
+                                <input id="sale" name="sale" th:field="*{salePrice}" class="form-control input-md" required="" type="text">
+
+                            </div>
+                        </div>
+
+
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <div class="col-md-4">
+
+                                <!-- File Button -->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="imageProduct">Image</label>
+
+
+                                    <img alt="AntMiner" th:if="${productDao.category.id == 1}" th:src="@{/img/miner/S19J.png}" style="height: 100px; width: 100px;">
+                                    <img alt="whatsMiner" th:if="${productDao.category.id == 2}" th:src="@{/img/miner/M50.webp}" style="height: 100px; width: 100px;">                                    <div class="col-md-4">
+
+
+
+                                        <input id="imageProduct" name="imageProduct" class="input-file" type="file" hidden>
+                                    </div>
+                                </div>
+                    </fieldset>
+                    <button type="submit" class="btn btn-success">SAVE</button>
+                </form>
+
             </div>
         </div>
         <!-- End of Main Content -->
@@ -293,14 +346,14 @@
 
 
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
 
 <!--categories js for api from db-->
 <script th:src="@{/js/categories.js}"></script>
