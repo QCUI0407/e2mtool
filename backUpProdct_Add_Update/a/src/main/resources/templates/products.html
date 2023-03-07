@@ -30,7 +30,7 @@
                 <!-- Topbar Search -->
                 <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
+                    <div class="input-group" hidden>
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
@@ -229,13 +229,7 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-<!--    search-->
-<!--                <div>-->
-<!--                    <form th:action="@{/search-result}" method="get">-->
-<!--                        <input type="text" id="search" name="keyword" placeholder="Search Miner">-->
-<!--                        <button type="submit" class="btn btn-primary">Search</button>-->
-<!--                    </form>-->
-<!--                </div>-->
+
                 <div>
                     <form th:action="@{/search-result}" method="get">
                         <input type="text" id="search" name="keyword" placeholder="Search Miner">
