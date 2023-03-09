@@ -30,7 +30,7 @@ public class LoginController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    @GetMapping("/login")
+    @GetMapping("login")
     public String loginForm(Model model){
         model.addAttribute("title","Login");
         return "login";

@@ -3,12 +3,12 @@ body{
     padding: 0;
     text-align: center;
 }
+
 .form-contact{
     width: 50%;
     margin: auto;
     padding: 1rem;
     background-color: #1ab7ea;
-    display: flex;
     flex-direction: column;
     gap: 1rem;
     align-items: center;

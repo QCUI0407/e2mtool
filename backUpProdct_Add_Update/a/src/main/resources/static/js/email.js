@@ -18,7 +18,6 @@ submit.addEventListener('submit', (e) => {
     <br>
     <b>Msg: </b>${msg.value}
 `
-
 //    email code
     Email.send({
         SecureToken: "e8c87b45-0aa4-4b81-896f-d57536be696b",
