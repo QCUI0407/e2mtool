@@ -24,4 +24,8 @@ public interface ProductService {
     Page<Product> pageProducts(int pageNo);
 
     Page<Product> searchProducts(int pageNo, String keyword);
+
+    List<Product> searchHome(String keyword);
+
+    List<Product> showProducts();
 }

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th = "https://www.thymeleaf.org/">
 
-<head th:replace="fragments :: header"></head>
+<head th:replace="fragments :: header">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{img/favicon.ico}">
+</head>
 
 
 
@@ -45,7 +47,7 @@
                 <div class="container-fluid" id="coin-list">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover">
-                            <thead class="bg-info bg-gradient text-dark">
+                            <thead class="text-dark" style="background-color: rgb(132, 164, 204)">
                             <tr>
                                 <th>Rank</th>
                                 <th>Name</th>

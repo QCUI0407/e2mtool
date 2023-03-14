@@ -70,10 +70,10 @@ public class CategoryController {
     public String delete(Long id, RedirectAttributes attributes){
         try {
             categoryService.deleteById(id);
-            attributes.addFlashAttribute("success", "Category deleted successfully");
+            attributes.addFlashAttribute("success", "Category Disabled");
         }catch (Exception e){
             e.printStackTrace();
-            attributes.addFlashAttribute("failed","Failed to deleted");
+            attributes.addFlashAttribute("failed","Failed to disable");
         }
         return "redirect:/categories";
     }
@@ -82,7 +82,7 @@ public class CategoryController {
     public String enable(Long id, RedirectAttributes attributes){
         try {
             categoryService.enabledById(id);
-            attributes.addFlashAttribute("success", "Category enabled successfully");
+            attributes.addFlashAttribute("success", "Category Enabled");
         }catch (Exception e){
             e.printStackTrace();
             attributes.addFlashAttribute("failed", "Failed to enabled");

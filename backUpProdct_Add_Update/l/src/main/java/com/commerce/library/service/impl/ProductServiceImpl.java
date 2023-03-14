@@ -171,16 +171,20 @@ public class ProductServiceImpl implements ProductService {
         return productDao;
     }
 
-    @Override
-    public List<Product> pageProducts() {
-        return null;
-    }
 
 
     @Override
     public List<Product> searchProducts(String keyword) {
         return productRepository.searchProducts(keyword);
     }
+
+
+    @Override
+    public List<Product> pageProducts() {
+        return null;
+    }
+
+
 
     @Override
     public Page<Product> pageProducts(int pageNo) {
@@ -196,4 +200,33 @@ public class ProductServiceImpl implements ProductService {
         return products;
 
     }
+
+    @Override
+    public List<Product> searchHome(String keyword)  {
+        System.out.println(productRepository.searchHome(keyword));
+        return productRepository.searchHome(keyword);
+    }
+
+    @Override
+    public List<Product> showProducts() {
+//        List<ProductDao> productDaoList = new ArrayList<>();
+        List<Product> products = productRepository.showProducts();
+        for (Product product : products) {
+            ProductDao productDao = new ProductDao();
+            productDao.setId(product.getId());
+            productDao.setName(product.getName());
+            productDao.setDescription(product.getDescription());
+            productDao.setSalePrice(product.getSalePrice());
+            productDao.setCurrentQuantity(product.getCurrentQuantity());
+            productDao.setCategory(product.getCategory());
+            productDao.setImage(product.getImage());
+            productDao.setActivated(product.is_activated());
+
+        }
+        System.out.println(products);
+        return products;
+
+    }
+
+
 }

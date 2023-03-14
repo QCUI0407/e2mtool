@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 
-<head th:replace="fragments :: header"></head>
+<head th:replace="fragments :: header">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{img/favicon.ico}">
+</head>
 
 
 <body id="page-top">
@@ -45,7 +47,7 @@
                 <!--page heading-->
                 <form class="form-horizontal" th:action="@{/save-product}" method="post" th:object="${product}" enctype="multipart/form-data" >
 
-<!--                    enctype="multipart/form-data"    -->
+                    <!--                    enctype="multipart/form-data"    -->
                     <fieldset>
 
                         <!-- Form Name -->
@@ -105,18 +107,19 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="price">SALE PRICE</label>
-                                <div class="col-md-4">
-                                    <input id="sale-price" name="sale-price" th:field="*{salePrice}" class="form-control input-md" required="" type="text">
-                                </div>
+
+                            <div class="col-md-4">
+                                <input id="sale-price" name="sale-price" th:field="*{salePrice}" class="form-control input-md" required="" type="text">
+                            </div>
                         </div>
 
-<!--                                 File Button -->
-                                <div class="form-group" hidden>
-                                    <label class="col-md-4 control-label" for="imageProduct">Image</label>
-                                    <div class="col-md-4">
-                                        <input id="imageProduct" name="imageProduct" class="input-file" type="file">
-                                    </div>
-                                </div>
+                        <!--                                 File Button -->
+                        <div class="form-group" hidden>
+                            <label class="col-md-4 control-label" for="imageProduct">Image</label>
+                            <div class="col-md-4">
+                                <input id="imageProduct" name="imageProduct" class="input-file" type="file">
+                            </div>
+                        </div>
                     </fieldset>
                     <button type="submit" class="btn btn-success">SAVE</button>
                 </form>

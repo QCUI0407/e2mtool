@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 
-<head th:replace="fragments :: header"></head>
+<head th:replace="fragments :: header">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{img/favicon.ico}">
+</head>
 
 
 <body id="page-top">
@@ -47,7 +49,7 @@
                     <p>No category</p>
                 </div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                        data-whatever="@mdo">Add new category
+                        data-whatever="@mdo">Add New Category
                 </button>
 <!--                提示成功或者失败-->
                 <div th:if = "${success}" class="text-center alert alert-success">
@@ -57,7 +59,7 @@
                     <p th:text="${fields}"></p>
                 </div>
 
-                <table class="table table-hover" th:if="${size > 0}">
+                <table class="table table-hover text-dark" th:if="${size > 0}">
                     <thead>
                     <tr>
                         <th scope="col">Category Number</th>
@@ -71,10 +73,10 @@
                         <th scope="row" th:text="${category.id}"></th>
                         <td th:text="${category.name}"></td>
                         <td>
-                            <a id="editButton" th:href="@{/findById/(id = ${category.id})}" class="btn btn-warning">Edit</a>
+                            <a id="editButton" th:href="@{/findById/(id = ${category.id})}" class="btn text-black-50" style="background-color: rgba(245,218,11,0.95)">Edit</a>
                         </td>
                         <td>
-                            <a th:if="${category.is_activated} == true" th:href = "@{/delete-category/(id = ${category.id})}" class="btn btn-danger">Delete</a>
+                            <a th:if="${category.is_activated} == true" th:href = "@{/delete-category/(id = ${category.id})}" class="btn btn-danger">Disable</a>
                             <a th:if="${category.is_activated} == false" th:href="@{/enable-category/(id = ${category.id})}" class="btn btn-success">Enabled</a>
                         </td>
                     </tr>

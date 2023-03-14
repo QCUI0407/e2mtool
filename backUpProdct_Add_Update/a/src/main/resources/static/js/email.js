@@ -4,6 +4,7 @@ const email = document.getElementById('email');
 const msg = document.getElementById('msg');
 //add listener on form container
 const submit = document.getElementsByClassName('form-contact')[0];
+// const message = "Email sent successfully";
 
 submit.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -26,6 +27,6 @@ submit.addEventListener('submit', (e) => {
         Subject: "This is the test" + email.value,
         Body: ebody
     }).then(
-        message => alert(message)
+        message => alert("Email sent successfully!")
     );
 })

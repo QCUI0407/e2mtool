@@ -24,6 +24,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select p from Product p where p.description like %?1% or p.name like %?1%")
     List<Product> searchProducts(String keyword);
 
+    @Query("select p from Product p where (p.description like %?1% or p.name like %?1%) and p.is_activated = true and p.category IN (select c.id from Category c where c.is_activated = true)")
+    List<Product> searchHome(String keyword);
+
+    @Query("select p from Product p where p.is_activated = true and p.is_deleted = false and p.category IN (select c.id from Category c where c.is_activated = true) ")
+    List<Product> showProducts();
+
+
 
 
 }
