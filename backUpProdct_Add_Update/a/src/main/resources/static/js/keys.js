@@ -1,1 +1,0 @@
-const COIN_API_KEY = '6b688f08-0a78-408b-823d-309b6580341b';
